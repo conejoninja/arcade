@@ -1,0 +1,24 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,9.0.3*%
+%TF.CreationDate,2025-08-18T10:50:28+02:00*%
+%TF.ProjectId,gopher-arcade,676f7068-6572-42d6-9172-636164652e6b,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Paste,Bot*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 9.0.3) date 2025-08-18 10:50:28*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%ADD10R,5.000000X5.000000*%
+%ADD11R,4.000000X4.000000*%
+G04 APERTURE END LIST*
+D10*
+%TO.C,BT1*%
+X56850000Y-124250000D03*
+X82750000Y-124250000D03*
+D11*
+X69800000Y-124250000D03*
+%TD*%
+M02*
