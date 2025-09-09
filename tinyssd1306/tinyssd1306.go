@@ -181,7 +181,7 @@ func (d *Device) SetPos(x uint8, y uint8) {
 	d.SendCommand(127)
 
 	d.SendCommand(PAGEADDR)
-	d.SendCommand(y)
+	d.SendCommand(y / 8)
 	d.SendCommand(7)
 }
 
@@ -191,7 +191,11 @@ func (d *Device) SetPixel(x uint8, y uint8, color bool) {
 	}
 	d.SetPos(x, y)
 	d.DataStart()
-	d.DataByte(0xFF)
+	if color {
+		d.DataByte(0x80)
+	} else {
+		d.DataByte(0x00)
+	}
 	d.DataStop()
 }
 

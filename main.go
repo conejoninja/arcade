@@ -2,7 +2,6 @@ package main
 
 import (
 	"machine"
-	"time"
 
 	"github.com/conejoninja/arcade/tinyssd1306"
 )
@@ -10,27 +9,40 @@ import (
 var (
 	sda_pin machine.Pin = machine.P2
 	scl_pin machine.Pin = machine.P3
+
+	btnLeft  machine.Pin = machine.BUTTON_LEFT
+	btnRight machine.Pin = machine.BUTTON_RIGHT
+
+	display *tinyssd1306.Device
+
+	player    uint8 = 60
+	oldPlayer uint8 = 60
 )
 
-var display *tinyssd1306.Device
-
 func main() {
+
+	btnLeft.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	btnRight.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
 
 	display = tinyssd1306.New(machine.P2, machine.P3)
 	display.Configure()
 	display.ClearScreen()
+
 	for {
-		display.FillScreen(0x11)
-		time.Sleep(500 * time.Millisecond)
-		display.FillScreen(0x00)
-		time.Sleep(500 * time.Millisecond)
+		if btnLeft.Get() && player > 0 {
+			player--
+		}
+		if btnRight.Get() && player < 116 {
+			player++
+		}
 
-		display.SetPixel(0, 0, true)
-		display.SetPixel(8, 8, true)
-		display.SetPixel(16, 16, true)
-		display.SetPixel(24, 24, true)
+		if oldPlayer != player {
+			display.SetPixel(oldPlayer, 48, false)
+			display.SetPixel(player, 48, true)
+			oldPlayer = player
+		}
 
-		time.Sleep(500 * time.Millisecond)
+		//time.Sleep(50 * time.Millisecond)
 
 	}
 }
