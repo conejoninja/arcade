@@ -229,24 +229,10 @@ func (d *Device) DrawBuffer(x0 uint8, y0 uint8, x1 uint8, y1 uint8, bitmap []uin
 
 		d.DataStart()
 
-		for col := uint8(0); col < width && bitmapIndex < len(bitmap); col++ {
-			var data uint8
-			if bitmapIndex < len(bitmap) {
-				data = bitmap[bitmapIndex]
-				bitmapIndex++
-			}
-			yOffset := y0 % 8
-			if yOffset != 0 {
-				if page == startPage {
-					data = data << yOffset
-				} else if page == endPage && bitmapIndex < len(bitmap) {
-					nextData := uint8(0)
-					if bitmapIndex < len(bitmap) {
-						nextData = bitmap[bitmapIndex-1]
-					}
-					data = (data >> (8 - yOffset)) | (nextData << yOffset)
-				}
-			}
+		var data uint8
+		for col := uint8(0); col < width; col++ {
+			data = bitmap[bitmapIndex]
+			bitmapIndex++
 			d.DataByte(data)
 		}
 		d.DataStop()
