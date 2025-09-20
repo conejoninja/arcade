@@ -2,6 +2,7 @@ package main
 
 import (
 	"machine"
+	"time"
 
 	"github.com/conejoninja/arcade/tinyssd1306"
 )
@@ -12,6 +13,7 @@ var (
 
 	btnLeft  machine.Pin = machine.BUTTON_LEFT
 	btnRight machine.Pin = machine.BUTTON_RIGHT
+	speaker  machine.Pin = machine.SPEAKER
 
 	display *tinyssd1306.Device
 
@@ -26,6 +28,16 @@ func main() {
 
 	btnLeft.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
 	btnRight.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	speaker.Configure(machine.PinConfig{Mode: machine.PinOutput})
+
+	for {
+		beep(50, 250)
+		time.Sleep(100 * time.Millisecond)
+		beep(150, 150)
+		time.Sleep(100 * time.Millisecond)
+		beep(250, 50)
+		time.Sleep(100 * time.Millisecond)
+	}
 
 	display = tinyssd1306.New(machine.P2, machine.P3)
 	display.Configure()
@@ -120,4 +132,13 @@ func DrawShoot(index uint8) {
 	display.DataStart()
 	display.DataByte(0x0F << i)
 	display.DataStop()
+}
+
+func beep(count, delay int) {
+	for i := 0; i <= count; i++ {
+		speaker.High()
+		time.Sleep(time.Duration(delay) * time.Microsecond)
+		speaker.Low()
+		time.Sleep(time.Duration(delay) * time.Microsecond)
+	}
 }
