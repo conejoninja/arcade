@@ -115,6 +115,6 @@ The last step is to solder the battery holder. Add some solder to the three pads
 
 ![Work surface - front](https://img.shields.io/badge/Work_surface-front-2ea44f)
 
-Add the keycaps and it's done! Congratulations on your new **Gopher ARCADE**
+Add the keycaps, the ATTiny85 on the socket and it's done! Congratulations on your new **Gopher ARCADE**
 
-![](/assets/step13.jpg)
+![Gopher ARCADE](/assets/step13.jpg)
