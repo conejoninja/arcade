@@ -63,6 +63,16 @@ const (
 
 ### Flashing
 
+
+## Requirements
+
+By default the ATTiny85 runs at 1MHz, you can make it runs at 8MHz with the following command (this is only required once).
+
+```bash
+avrdude -p attiny85 -c usbasp -B 32 -U lfuse:w:0xE2:m
+```
+
+
 You could use [TinyGo](https://tinygo.org/) with USBASP and the target _gopher-arcade_ to flash it as follows:
 
 ```bash
