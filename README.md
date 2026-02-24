@@ -61,12 +61,30 @@ const (
 )
 ```
 
+## Flashing
+
+### Requirements 
+
+You need TinyGo and [avrdude](https://github.com/avrdudes/avrdude). Depending on your OS, you can check the [installation instructions](https://tinygo.org/getting-started/install/).
+
+### Connecting
+
+Here you could find how to connect it to your USBasp probe.
+
+You could use the 10-Pin connector to the ATTiny85:
+![10Pin](/assets/usbasp1.jpg)
+
+
+You could use the 6-Pin connector to the ATTiny85:
+![6Pin](/assets/usbasp2.jpg)
+
+Or if you don't want to take out/in the chip each time (you could damage the pins of the ATTiny), you could connect to the board directly as follows:
+![Directly to the board](/assets/usbasp4.jpg)
+
+
 ### Flashing
 
-
-## Requirements
-
-By default the ATTiny85 runs at 1MHz, you can make it runs at 8MHz with the following command (this is only required once).
+By default the ATTiny85 runs at 1MHz, you can make it runs at 8MHz with the following command **(this is only required once)**.
 
 ```bash
 avrdude -p attiny85 -c usbasp -B 32 -U lfuse:w:0xE2:m
@@ -79,3 +97,10 @@ You could use [TinyGo](https://tinygo.org/) with USBASP and the target _gopher-a
 tinygo flash -size=short -target gopher-arcade  .
 ```
 
+
+### Not TinyGo
+There's a good collection of games written in Arduino/C: https://github.com/andyhighnumber/Attiny-Arduino-Games 
+
+ Note: some of then need a different board with analog input or more buttons. 
+
+ Unfortunately I can not provide support on how to flash them (use the Arduino IDE *\*wink \*wink*) as it defeats the purpose of programming them with TinyGo!
